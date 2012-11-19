@@ -1,16 +1,34 @@
-ruby
-
-This is the ruby module.
-
-License
--------
+ 
+ Usage
 
 
-Contact
--------
+include kibana-ruby
+include passenger
+
+apache::vhost{'ribana':
+    docroot      => '/var/vhosts/ribana/htdocs/static/',
+                 alias        => 'ribana',
+                 vhost_config => 'RackAutodetect On',
+
+}
+ 
 
 
-Support
--------
+ 
+ This module  installs Kibana (from rpm)  and configures it 
+ The Ruby variant of Kibana
+ Assumptions
+ - Kibana- Ruby is available in your repos and installs in
+   /var/vhosts/ribana/htdocs
+ - ribana because it's the rubyversion of kibana and we have the php version around too 
+ - The rpm also constains the result of bundle install 's vendor tree.
 
-Please log tickets and issues at our [Projects site](http://projects.example.com)
+
+Note that we point the docroot to  static/ and not public
+
+
+
+TODO : 
+
+Parametrize the config file KibanaConfig.rb 
+currenly points to localhoost:9200 for elasticsearch, which currently WFM
