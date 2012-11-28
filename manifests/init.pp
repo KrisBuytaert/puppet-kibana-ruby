@@ -41,6 +41,11 @@ class kibana-ruby($elasticsearch_server ='localhost:9200') {
     ensure => '2-1',
   }
 
+  package { 'kibana-bundled-deps':
+    ensure => '0.98.14-1',
+  }
+
+
   file { '/var/vhosts/ribana/htdocs/KibanaConfig.rb':
     ensure  => 'file',
     group   => '0',
@@ -48,5 +53,4 @@ class kibana-ruby($elasticsearch_server ='localhost:9200') {
     owner   => '0',
     content => template('kibana-ruby/KibanaConfig.rb.erb'),
   }
-  
 }
