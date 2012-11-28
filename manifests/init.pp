@@ -34,11 +34,19 @@
 # Copyright 2013 Kris Buytaert, unless otherwise noted.
 #
 #
-class kibana-ruby {
+class kibana-ruby($elasticsearch_server ='localhost:9200') {
 
 
   package { 'kibana-ruby':
     ensure => '2-1',
   }
 
+  file { '/var/vhosts/ribana/htdocs/KibanaConfig.rb':
+    ensure  => 'file',
+    group   => '0',
+    mode    => '644',
+    owner   => '0',
+    content => template('kibana-ruby/KibanaConfig.rb.erb'),
+  }
+  
 }
